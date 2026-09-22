@@ -1,0 +1,531 @@
+2026-09-22T12:28:54 [INFO] app.ai.llm_client — LM Studio is available at http://127.0.0.1:1234/v1
+2026-09-22T12:30:30 [INFO] app.ai.llm_client — LM Studio is available at http://127.0.0.1:1234/v1
+2026-09-22T12:30:30 [INFO] app.pipeline — === Processing Scenario 1: Normal Rest ===
+2026-09-22T12:30:30 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:30:30 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:30:30 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:30:30 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:30:30 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:30:30 [INFO] app.pipeline — Scenario 1 complete in 0.00s — final risk: RiskLevel.NORMAL
+2026-09-22T12:30:30 [INFO] app.pipeline — === Processing Scenario 2: Normal Exercise ===
+2026-09-22T12:30:30 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:30:30 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:30:30 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:30:30 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:30:30 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:30:30 [INFO] app.pipeline — Scenario 2 complete in 0.00s — final risk: RiskLevel.NORMAL
+2026-09-22T12:30:30 [INFO] app.pipeline — === Processing Scenario 3: Elevated Resting Heart Rate ===
+2026-09-22T12:30:30 [INFO] app.rules.risk_scorer — Risk score computed: base=23, multiplier=1.00, final=23, level=RiskLevel.LOW
+2026-09-22T12:30:30 [INFO] app.rules.risk_scorer — Risk score computed: base=30, multiplier=1.15, final=34, level=RiskLevel.LOW
+2026-09-22T12:30:30 [INFO] app.rules.risk_scorer — Risk score computed: base=30, multiplier=1.30, final=39, level=RiskLevel.LOW
+2026-09-22T12:30:30 [INFO] app.rules.risk_scorer — Risk score computed: base=30, multiplier=1.40, final=42, level=RiskLevel.MODERATE
+2026-09-22T12:30:30 [INFO] app.rules.rule_engine — RISK EVENT created: id=d3fd0455 score=42 level=RiskLevel.MODERATE
+2026-09-22T12:30:30 [INFO] app.rules.risk_scorer — Risk score computed: base=40, multiplier=1.50, final=60, level=RiskLevel.MODERATE
+2026-09-22T12:30:30 [INFO] app.rules.rule_engine — RISK EVENT created: id=cf9244f8 score=60 level=RiskLevel.MODERATE
+2026-09-22T12:30:30 [INFO] app.pipeline — Scenario 3: Risk event detected — calling AI pipeline.
+2026-09-22T12:30:30 [INFO] app.ai.cause_agent — Agent 1: sending request for event_id=cf9244f8
+2026-09-22T12:30:30 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen3-8b
+2026-09-22T12:33:31 [ERROR] app.ai.llm_client — LM Studio connection failed: Request timed out.
+2026-09-22T12:33:31 [WARNING] app.pipeline — Scenario 3: Agent 1 failed — skipping validation and Agent 2.
+2026-09-22T12:33:31 [INFO] app.pipeline — Scenario 3 complete in 181.71s — final risk: RiskLevel.MODERATE
+2026-09-22T12:33:31 [INFO] app.pipeline — === Processing Scenario 4: Low SpO2 ===
+2026-09-22T12:33:31 [INFO] app.rules.risk_scorer — Risk score computed: base=12, multiplier=1.00, final=12, level=RiskLevel.NORMAL
+2026-09-22T12:33:31 [INFO] app.rules.risk_scorer — Risk score computed: base=28, multiplier=1.15, final=32, level=RiskLevel.LOW
+2026-09-22T12:33:31 [INFO] app.rules.risk_scorer — Risk score computed: base=28, multiplier=1.30, final=36, level=RiskLevel.LOW
+2026-09-22T12:33:31 [INFO] app.rules.risk_scorer — Risk score computed: base=40, multiplier=1.40, final=56, level=RiskLevel.MODERATE
+2026-09-22T12:33:31 [INFO] app.rules.rule_engine — RISK EVENT created: id=50e7da55 score=56 level=RiskLevel.MODERATE
+2026-09-22T12:33:31 [INFO] app.rules.risk_scorer — Risk score computed: base=40, multiplier=1.50, final=60, level=RiskLevel.MODERATE
+2026-09-22T12:33:31 [INFO] app.rules.rule_engine — RISK EVENT created: id=9dd8273a score=60 level=RiskLevel.MODERATE
+2026-09-22T12:33:31 [INFO] app.pipeline — Scenario 4: Risk event detected — calling AI pipeline.
+2026-09-22T12:33:31 [WARNING] app.ai.cause_agent — Agent 1 skipped — LM Studio unavailable.
+2026-09-22T12:33:31 [WARNING] app.pipeline — Scenario 4: Agent 1 failed — skipping validation and Agent 2.
+2026-09-22T12:33:31 [INFO] app.pipeline — Scenario 4 complete in 0.00s — final risk: RiskLevel.MODERATE
+2026-09-22T12:33:31 [INFO] app.pipeline — === Processing Scenario 5: Heat Stress ===
+2026-09-22T12:33:31 [INFO] app.rules.risk_scorer — Risk score computed: base=5, multiplier=1.00, final=5, level=RiskLevel.NORMAL
+2026-09-22T12:33:31 [INFO] app.rules.risk_scorer — Risk score computed: base=50, multiplier=1.15, final=57, level=RiskLevel.MODERATE
+2026-09-22T12:33:31 [INFO] app.rules.risk_scorer — Risk score computed: base=50, multiplier=1.30, final=65, level=RiskLevel.HIGH
+2026-09-22T12:33:31 [INFO] app.rules.rule_engine — RISK EVENT created: id=8b79655f score=65 level=RiskLevel.HIGH
+2026-09-22T12:33:31 [INFO] app.rules.risk_scorer — Risk score computed: base=77, multiplier=1.40, final=100, level=RiskLevel.CRITICAL
+2026-09-22T12:33:31 [INFO] app.rules.rule_engine — RISK EVENT created: id=e2ead837 score=100 level=RiskLevel.CRITICAL
+2026-09-22T12:33:31 [INFO] app.rules.risk_scorer — Risk score computed: base=77, multiplier=1.50, final=100, level=RiskLevel.CRITICAL
+2026-09-22T12:33:31 [INFO] app.rules.rule_engine — RISK EVENT created: id=5bad7544 score=100 level=RiskLevel.CRITICAL
+2026-09-22T12:33:31 [INFO] app.pipeline — Scenario 5: Risk event detected — calling AI pipeline.
+2026-09-22T12:33:31 [WARNING] app.ai.cause_agent — Agent 1 skipped — LM Studio unavailable.
+2026-09-22T12:33:31 [WARNING] app.pipeline — Scenario 5: Agent 1 failed — skipping validation and Agent 2.
+2026-09-22T12:33:31 [INFO] app.pipeline — Scenario 5 complete in 0.00s — final risk: RiskLevel.CRITICAL
+2026-09-22T12:33:31 [INFO] app.pipeline — === Processing Scenario 6: Elevated Temperature + Resting HR ===
+2026-09-22T12:33:32 [INFO] app.rules.risk_scorer — Risk score computed: base=27, multiplier=1.00, final=27, level=RiskLevel.LOW
+2026-09-22T12:33:32 [INFO] app.rules.risk_scorer — Risk score computed: base=27, multiplier=1.15, final=31, level=RiskLevel.LOW
+2026-09-22T12:33:32 [INFO] app.rules.risk_scorer — Risk score computed: base=27, multiplier=1.30, final=35, level=RiskLevel.LOW
+2026-09-22T12:33:32 [INFO] app.rules.risk_scorer — Risk score computed: base=55, multiplier=1.40, final=77, level=RiskLevel.HIGH
+2026-09-22T12:33:32 [INFO] app.rules.rule_engine — RISK EVENT created: id=16c99b97 score=77 level=RiskLevel.HIGH
+2026-09-22T12:33:32 [INFO] app.rules.risk_scorer — Risk score computed: base=55, multiplier=1.50, final=82, level=RiskLevel.CRITICAL
+2026-09-22T12:33:32 [INFO] app.rules.rule_engine — RISK EVENT created: id=3a2b73ed score=82 level=RiskLevel.CRITICAL
+2026-09-22T12:33:32 [INFO] app.pipeline — Scenario 6: Risk event detected — calling AI pipeline.
+2026-09-22T12:33:32 [WARNING] app.ai.cause_agent — Agent 1 skipped — LM Studio unavailable.
+2026-09-22T12:33:32 [WARNING] app.pipeline — Scenario 6: Agent 1 failed — skipping validation and Agent 2.
+2026-09-22T12:33:32 [INFO] app.pipeline — Scenario 6 complete in 0.00s — final risk: RiskLevel.CRITICAL
+2026-09-22T12:33:32 [INFO] app.pipeline — === Processing Scenario 7: Possible Fall ===
+2026-09-22T12:33:32 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:33:32 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:33:32 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:33:32 [INFO] app.rules.risk_scorer — Risk score computed: base=65, multiplier=1.00, final=65, level=RiskLevel.HIGH
+2026-09-22T12:33:32 [INFO] app.context.activity_detector — Fall detection: POSSIBLE_FALL — impact=10.23 g, followed by 2 low-motion readings
+2026-09-22T12:33:32 [INFO] app.rules.risk_scorer — Risk score computed: base=65, multiplier=1.15, final=74, level=RiskLevel.HIGH
+2026-09-22T12:33:32 [INFO] app.context.activity_detector — Fall detection: POSSIBLE_FALL — impact=10.23 g, followed by 3 low-motion readings
+2026-09-22T12:33:32 [INFO] app.rules.risk_scorer — Risk score computed: base=65, multiplier=1.30, final=84, level=RiskLevel.CRITICAL
+2026-09-22T12:33:32 [INFO] app.rules.rule_engine — RISK EVENT created: id=35869ec8 score=84 level=RiskLevel.CRITICAL
+2026-09-22T12:33:32 [INFO] app.pipeline — Scenario 7: Risk event detected — calling AI pipeline.
+2026-09-22T12:33:32 [WARNING] app.ai.cause_agent — Agent 1 skipped — LM Studio unavailable.
+2026-09-22T12:33:32 [WARNING] app.pipeline — Scenario 7: Agent 1 failed — skipping validation and Agent 2.
+2026-09-22T12:33:32 [INFO] app.pipeline — Scenario 7 complete in 0.00s — final risk: RiskLevel.CRITICAL
+2026-09-22T12:33:32 [INFO] app.pipeline — === Processing Scenario 8: High Altitude SpO2 Decrease ===
+2026-09-22T12:33:32 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:33:32 [INFO] app.rules.risk_scorer — Risk score computed: base=8, multiplier=1.00, final=8, level=RiskLevel.NORMAL
+2026-09-22T12:33:32 [INFO] app.rules.risk_scorer — Risk score computed: base=8, multiplier=1.15, final=9, level=RiskLevel.NORMAL
+2026-09-22T12:33:32 [INFO] app.rules.risk_scorer — Risk score computed: base=23, multiplier=1.30, final=29, level=RiskLevel.LOW
+2026-09-22T12:33:32 [INFO] app.rules.risk_scorer — Risk score computed: base=45, multiplier=1.40, final=62, level=RiskLevel.HIGH
+2026-09-22T12:33:32 [INFO] app.rules.rule_engine — RISK EVENT created: id=1c1816bb score=62 level=RiskLevel.HIGH
+2026-09-22T12:33:32 [INFO] app.pipeline — Scenario 8: Risk event detected — calling AI pipeline.
+2026-09-22T12:33:32 [WARNING] app.ai.cause_agent — Agent 1 skipped — LM Studio unavailable.
+2026-09-22T12:33:32 [WARNING] app.pipeline — Scenario 8: Agent 1 failed — skipping validation and Agent 2.
+2026-09-22T12:33:32 [INFO] app.pipeline — Scenario 8 complete in 0.00s — final risk: RiskLevel.HIGH
+2026-09-22T12:36:26 [INFO] app.ai.llm_client — LM Studio is available at http://127.0.0.1:1234/v1
+2026-09-22T12:36:26 [INFO] app.pipeline — === Processing Scenario 1: Normal Rest ===
+2026-09-22T12:36:26 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:36:26 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:36:26 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:36:26 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:36:26 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:36:26 [INFO] app.pipeline — Scenario 1 complete in 0.00s — final risk: RiskLevel.NORMAL
+2026-09-22T12:36:26 [INFO] app.pipeline — === Processing Scenario 2: Normal Exercise ===
+2026-09-22T12:36:26 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:36:26 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:36:26 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:36:26 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:36:26 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:36:26 [INFO] app.pipeline — Scenario 2 complete in 0.00s — final risk: RiskLevel.NORMAL
+2026-09-22T12:36:26 [INFO] app.pipeline — === Processing Scenario 3: Elevated Resting Heart Rate ===
+2026-09-22T12:36:26 [INFO] app.rules.risk_scorer — Risk score computed: base=23, multiplier=1.00, final=23, level=RiskLevel.LOW
+2026-09-22T12:36:26 [INFO] app.rules.risk_scorer — Risk score computed: base=30, multiplier=1.15, final=34, level=RiskLevel.LOW
+2026-09-22T12:36:26 [INFO] app.rules.risk_scorer — Risk score computed: base=30, multiplier=1.30, final=39, level=RiskLevel.LOW
+2026-09-22T12:36:26 [INFO] app.rules.risk_scorer — Risk score computed: base=30, multiplier=1.40, final=42, level=RiskLevel.MODERATE
+2026-09-22T12:36:26 [INFO] app.rules.rule_engine — RISK EVENT created: id=ca15d0fb score=42 level=RiskLevel.MODERATE
+2026-09-22T12:36:26 [INFO] app.rules.risk_scorer — Risk score computed: base=40, multiplier=1.50, final=60, level=RiskLevel.MODERATE
+2026-09-22T12:36:26 [INFO] app.rules.rule_engine — RISK EVENT created: id=0daa49d7 score=60 level=RiskLevel.MODERATE
+2026-09-22T12:36:26 [INFO] app.pipeline — Scenario 3: Risk event detected — calling AI pipeline.
+2026-09-22T12:36:26 [INFO] app.ai.cause_agent — Agent 1: sending request for event_id=0daa49d7
+2026-09-22T12:36:26 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen3-8b
+2026-09-22T12:39:28 [ERROR] app.ai.llm_client — LM Studio connection failed: Request timed out.
+2026-09-22T12:39:28 [WARNING] app.pipeline — Scenario 3: Agent 1 failed — skipping validation and Agent 2.
+2026-09-22T12:39:28 [INFO] app.pipeline — Scenario 3 complete in 181.50s — final risk: RiskLevel.MODERATE
+2026-09-22T12:39:28 [INFO] app.pipeline — === Processing Scenario 4: Low SpO2 ===
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=12, multiplier=1.00, final=12, level=RiskLevel.NORMAL
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=28, multiplier=1.15, final=32, level=RiskLevel.LOW
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=28, multiplier=1.30, final=36, level=RiskLevel.LOW
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=40, multiplier=1.40, final=56, level=RiskLevel.MODERATE
+2026-09-22T12:39:28 [INFO] app.rules.rule_engine — RISK EVENT created: id=a3344134 score=56 level=RiskLevel.MODERATE
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=40, multiplier=1.50, final=60, level=RiskLevel.MODERATE
+2026-09-22T12:39:28 [INFO] app.rules.rule_engine — RISK EVENT created: id=d7e21279 score=60 level=RiskLevel.MODERATE
+2026-09-22T12:39:28 [INFO] app.pipeline — Scenario 4: Risk event detected — calling AI pipeline.
+2026-09-22T12:39:28 [WARNING] app.ai.cause_agent — Agent 1 skipped — LM Studio unavailable.
+2026-09-22T12:39:28 [WARNING] app.pipeline — Scenario 4: Agent 1 failed — skipping validation and Agent 2.
+2026-09-22T12:39:28 [INFO] app.pipeline — Scenario 4 complete in 0.01s — final risk: RiskLevel.MODERATE
+2026-09-22T12:39:28 [INFO] app.pipeline — === Processing Scenario 5: Heat Stress ===
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=5, multiplier=1.00, final=5, level=RiskLevel.NORMAL
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=50, multiplier=1.15, final=57, level=RiskLevel.MODERATE
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=50, multiplier=1.30, final=65, level=RiskLevel.HIGH
+2026-09-22T12:39:28 [INFO] app.rules.rule_engine — RISK EVENT created: id=e43c56bf score=65 level=RiskLevel.HIGH
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=77, multiplier=1.40, final=100, level=RiskLevel.CRITICAL
+2026-09-22T12:39:28 [INFO] app.rules.rule_engine — RISK EVENT created: id=958c925b score=100 level=RiskLevel.CRITICAL
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=77, multiplier=1.50, final=100, level=RiskLevel.CRITICAL
+2026-09-22T12:39:28 [INFO] app.rules.rule_engine — RISK EVENT created: id=543e77d1 score=100 level=RiskLevel.CRITICAL
+2026-09-22T12:39:28 [INFO] app.pipeline — Scenario 5: Risk event detected — calling AI pipeline.
+2026-09-22T12:39:28 [WARNING] app.ai.cause_agent — Agent 1 skipped — LM Studio unavailable.
+2026-09-22T12:39:28 [WARNING] app.pipeline — Scenario 5: Agent 1 failed — skipping validation and Agent 2.
+2026-09-22T12:39:28 [INFO] app.pipeline — Scenario 5 complete in 0.01s — final risk: RiskLevel.CRITICAL
+2026-09-22T12:39:28 [INFO] app.pipeline — === Processing Scenario 6: Elevated Temperature + Resting HR ===
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=27, multiplier=1.00, final=27, level=RiskLevel.LOW
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=27, multiplier=1.15, final=31, level=RiskLevel.LOW
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=27, multiplier=1.30, final=35, level=RiskLevel.LOW
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=55, multiplier=1.40, final=77, level=RiskLevel.HIGH
+2026-09-22T12:39:28 [INFO] app.rules.rule_engine — RISK EVENT created: id=51fa6610 score=77 level=RiskLevel.HIGH
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=55, multiplier=1.50, final=82, level=RiskLevel.CRITICAL
+2026-09-22T12:39:28 [INFO] app.rules.rule_engine — RISK EVENT created: id=16f36724 score=82 level=RiskLevel.CRITICAL
+2026-09-22T12:39:28 [INFO] app.pipeline — Scenario 6: Risk event detected — calling AI pipeline.
+2026-09-22T12:39:28 [WARNING] app.ai.cause_agent — Agent 1 skipped — LM Studio unavailable.
+2026-09-22T12:39:28 [WARNING] app.pipeline — Scenario 6: Agent 1 failed — skipping validation and Agent 2.
+2026-09-22T12:39:28 [INFO] app.pipeline — Scenario 6 complete in 0.01s — final risk: RiskLevel.CRITICAL
+2026-09-22T12:39:28 [INFO] app.pipeline — === Processing Scenario 7: Possible Fall ===
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=65, multiplier=1.00, final=65, level=RiskLevel.HIGH
+2026-09-22T12:39:28 [INFO] app.context.activity_detector — Fall detection: POSSIBLE_FALL — impact=10.23 g, followed by 2 low-motion readings
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=65, multiplier=1.15, final=74, level=RiskLevel.HIGH
+2026-09-22T12:39:28 [INFO] app.context.activity_detector — Fall detection: POSSIBLE_FALL — impact=10.23 g, followed by 3 low-motion readings
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=65, multiplier=1.30, final=84, level=RiskLevel.CRITICAL
+2026-09-22T12:39:28 [INFO] app.rules.rule_engine — RISK EVENT created: id=f2efd8af score=84 level=RiskLevel.CRITICAL
+2026-09-22T12:39:28 [INFO] app.pipeline — Scenario 7: Risk event detected — calling AI pipeline.
+2026-09-22T12:39:28 [WARNING] app.ai.cause_agent — Agent 1 skipped — LM Studio unavailable.
+2026-09-22T12:39:28 [WARNING] app.pipeline — Scenario 7: Agent 1 failed — skipping validation and Agent 2.
+2026-09-22T12:39:28 [INFO] app.pipeline — Scenario 7 complete in 0.01s — final risk: RiskLevel.CRITICAL
+2026-09-22T12:39:28 [INFO] app.pipeline — === Processing Scenario 8: High Altitude SpO2 Decrease ===
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=8, multiplier=1.00, final=8, level=RiskLevel.NORMAL
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=8, multiplier=1.15, final=9, level=RiskLevel.NORMAL
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=23, multiplier=1.30, final=29, level=RiskLevel.LOW
+2026-09-22T12:39:28 [INFO] app.rules.risk_scorer — Risk score computed: base=45, multiplier=1.40, final=62, level=RiskLevel.HIGH
+2026-09-22T12:39:28 [INFO] app.rules.rule_engine — RISK EVENT created: id=d1155506 score=62 level=RiskLevel.HIGH
+2026-09-22T12:39:28 [INFO] app.pipeline — Scenario 8: Risk event detected — calling AI pipeline.
+2026-09-22T12:39:28 [WARNING] app.ai.cause_agent — Agent 1 skipped — LM Studio unavailable.
+2026-09-22T12:39:28 [WARNING] app.pipeline — Scenario 8: Agent 1 failed — skipping validation and Agent 2.
+2026-09-22T12:39:28 [INFO] app.pipeline — Scenario 8 complete in 0.01s — final risk: RiskLevel.HIGH
+2026-09-22T12:52:53 [INFO] app.ai.llm_client — LM Studio is available at http://127.0.0.1:1234/v1
+2026-09-22T12:52:53 [INFO] app.pipeline — === Processing Scenario 1: Normal Rest ===
+2026-09-22T12:52:53 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:52:53 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:52:53 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:52:53 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:52:53 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:52:53 [INFO] app.pipeline — Scenario 1 complete in 0.00s — final risk: RiskLevel.NORMAL
+2026-09-22T12:52:53 [INFO] app.pipeline — === Processing Scenario 2: Normal Exercise ===
+2026-09-22T12:52:53 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:52:53 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:52:53 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:52:53 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:52:53 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T12:52:53 [INFO] app.pipeline — Scenario 2 complete in 0.00s — final risk: RiskLevel.NORMAL
+2026-09-22T12:52:53 [INFO] app.pipeline — === Processing Scenario 3: Elevated Resting Heart Rate ===
+2026-09-22T12:52:53 [INFO] app.rules.risk_scorer — Risk score computed: base=23, multiplier=1.00, final=23, level=RiskLevel.LOW
+2026-09-22T12:52:53 [INFO] app.rules.risk_scorer — Risk score computed: base=30, multiplier=1.15, final=34, level=RiskLevel.LOW
+2026-09-22T12:52:53 [INFO] app.rules.risk_scorer — Risk score computed: base=30, multiplier=1.30, final=39, level=RiskLevel.LOW
+2026-09-22T12:52:53 [INFO] app.rules.risk_scorer — Risk score computed: base=30, multiplier=1.40, final=42, level=RiskLevel.MODERATE
+2026-09-22T12:52:53 [INFO] app.rules.rule_engine — RISK EVENT created: id=dfc5cc6c score=42 level=RiskLevel.MODERATE
+2026-09-22T12:52:53 [INFO] app.rules.risk_scorer — Risk score computed: base=40, multiplier=1.50, final=60, level=RiskLevel.MODERATE
+2026-09-22T12:52:53 [INFO] app.rules.rule_engine — RISK EVENT created: id=47455d54 score=60 level=RiskLevel.MODERATE
+2026-09-22T12:52:53 [INFO] app.pipeline — Scenario 3: Risk event detected — calling AI pipeline.
+2026-09-22T12:52:53 [INFO] app.ai.cause_agent — Agent 1: sending request for event_id=47455d54
+2026-09-22T12:52:53 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen3-8b
+2026-09-22T12:54:43 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Stress or anxiety episode' → PARTIALLY_SUPPORTED
+2026-09-22T12:54:43 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Dehydration' → PARTIALLY_SUPPORTED
+2026-09-22T12:54:43 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Sensor artifact from minor movement' → PARTIALLY_SUPPORTED
+2026-09-22T12:54:43 [INFO] app.ai.precaution_agent — Agent 2: sending request for event_id=47455d54
+2026-09-22T12:54:43 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen3-8b
+2026-09-22T12:56:05 [INFO] app.pipeline — Scenario 3 complete in 192.42s — final risk: RiskLevel.MODERATE
+2026-09-22T12:56:05 [INFO] app.pipeline — === Processing Scenario 4: Low SpO2 ===
+2026-09-22T12:56:05 [INFO] app.rules.risk_scorer — Risk score computed: base=12, multiplier=1.00, final=12, level=RiskLevel.NORMAL
+2026-09-22T12:56:05 [INFO] app.rules.risk_scorer — Risk score computed: base=28, multiplier=1.15, final=32, level=RiskLevel.LOW
+2026-09-22T12:56:05 [INFO] app.rules.risk_scorer — Risk score computed: base=28, multiplier=1.30, final=36, level=RiskLevel.LOW
+2026-09-22T12:56:05 [INFO] app.rules.risk_scorer — Risk score computed: base=40, multiplier=1.40, final=56, level=RiskLevel.MODERATE
+2026-09-22T12:56:05 [INFO] app.rules.rule_engine — RISK EVENT created: id=4ec567a2 score=56 level=RiskLevel.MODERATE
+2026-09-22T12:56:05 [INFO] app.rules.risk_scorer — Risk score computed: base=40, multiplier=1.50, final=60, level=RiskLevel.MODERATE
+2026-09-22T12:56:05 [INFO] app.rules.rule_engine — RISK EVENT created: id=6eab9d60 score=60 level=RiskLevel.MODERATE
+2026-09-22T12:56:05 [INFO] app.pipeline — Scenario 4: Risk event detected — calling AI pipeline.
+2026-09-22T12:56:05 [INFO] app.ai.cause_agent — Agent 1: sending request for event_id=6eab9d60
+2026-09-22T12:56:05 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen3-8b
+2026-09-22T12:59:51 [WARNING] app.ai.cause_validator — Cause REJECTED: 'Mild respiratory restriction' → INSUFFICIENT_DATA
+2026-09-22T12:59:51 [WARNING] app.ai.cause_validator — Cause REJECTED: 'Environmental air quality impact' → NOT_SUPPORTED
+2026-09-22T12:59:51 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Sensor measurement artifact' → PARTIALLY_SUPPORTED
+2026-09-22T12:59:51 [INFO] app.ai.precaution_agent — Agent 2: sending request for event_id=6eab9d60
+2026-09-22T12:59:51 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen3-8b
+2026-09-22T13:00:58 [INFO] app.pipeline — Scenario 4 complete in 292.78s — final risk: RiskLevel.MODERATE
+2026-09-22T13:00:58 [INFO] app.pipeline — === Processing Scenario 5: Heat Stress ===
+2026-09-22T13:00:58 [INFO] app.rules.risk_scorer — Risk score computed: base=5, multiplier=1.00, final=5, level=RiskLevel.NORMAL
+2026-09-22T13:00:58 [INFO] app.rules.risk_scorer — Risk score computed: base=50, multiplier=1.15, final=57, level=RiskLevel.MODERATE
+2026-09-22T13:00:58 [INFO] app.rules.risk_scorer — Risk score computed: base=50, multiplier=1.30, final=65, level=RiskLevel.HIGH
+2026-09-22T13:00:58 [INFO] app.rules.rule_engine — RISK EVENT created: id=a05ebd32 score=65 level=RiskLevel.HIGH
+2026-09-22T13:00:58 [INFO] app.rules.risk_scorer — Risk score computed: base=77, multiplier=1.40, final=100, level=RiskLevel.CRITICAL
+2026-09-22T13:00:58 [INFO] app.rules.rule_engine — RISK EVENT created: id=5435db6f score=100 level=RiskLevel.CRITICAL
+2026-09-22T13:00:58 [INFO] app.rules.risk_scorer — Risk score computed: base=77, multiplier=1.50, final=100, level=RiskLevel.CRITICAL
+2026-09-22T13:00:58 [INFO] app.rules.rule_engine — RISK EVENT created: id=8b9e7d3d score=100 level=RiskLevel.CRITICAL
+2026-09-22T13:00:58 [INFO] app.pipeline — Scenario 5: Risk event detected — calling AI pipeline.
+2026-09-22T13:00:58 [INFO] app.ai.cause_agent — Agent 1: sending request for event_id=5435db6f
+2026-09-22T13:00:58 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen3-8b
+2026-09-22T13:02:52 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Heat-Related Physiological Stress' → SUPPORTED
+2026-09-22T13:02:52 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Acute Infection/Fever' → SUPPORTED
+2026-09-22T13:02:52 [WARNING] app.ai.cause_validator — Cause REJECTED: 'Overexertion During Walking' → INSUFFICIENT_DATA
+2026-09-22T13:02:52 [INFO] app.ai.precaution_agent — Agent 2: sending request for event_id=5435db6f
+2026-09-22T13:02:52 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen3-8b
+2026-09-22T13:04:14 [INFO] app.pipeline — Scenario 5 complete in 196.08s — final risk: RiskLevel.CRITICAL
+2026-09-22T13:04:14 [INFO] app.pipeline — === Processing Scenario 6: Elevated Temperature + Resting HR ===
+2026-09-22T13:04:14 [INFO] app.rules.risk_scorer — Risk score computed: base=27, multiplier=1.00, final=27, level=RiskLevel.LOW
+2026-09-22T13:04:14 [INFO] app.rules.risk_scorer — Risk score computed: base=27, multiplier=1.15, final=31, level=RiskLevel.LOW
+2026-09-22T13:04:14 [INFO] app.rules.risk_scorer — Risk score computed: base=27, multiplier=1.30, final=35, level=RiskLevel.LOW
+2026-09-22T13:04:14 [INFO] app.rules.risk_scorer — Risk score computed: base=55, multiplier=1.40, final=77, level=RiskLevel.HIGH
+2026-09-22T13:04:14 [INFO] app.rules.rule_engine — RISK EVENT created: id=b713a3b4 score=77 level=RiskLevel.HIGH
+2026-09-22T13:04:14 [INFO] app.rules.risk_scorer — Risk score computed: base=55, multiplier=1.50, final=82, level=RiskLevel.CRITICAL
+2026-09-22T13:04:14 [INFO] app.rules.rule_engine — RISK EVENT created: id=3e5635d8 score=82 level=RiskLevel.CRITICAL
+2026-09-22T13:04:14 [INFO] app.pipeline — Scenario 6: Risk event detected — calling AI pipeline.
+2026-09-22T13:04:14 [INFO] app.ai.cause_agent — Agent 1: sending request for event_id=3e5635d8
+2026-09-22T13:04:14 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen3-8b
+2026-09-22T13:05:56 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Infection or viral illness' → SUPPORTED
+2026-09-22T13:05:56 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Dehydration' → PARTIALLY_SUPPORTED
+2026-09-22T13:05:56 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Subclinical inflammation or stress response' → SUPPORTED
+2026-09-22T13:05:56 [INFO] app.ai.precaution_agent — Agent 2: sending request for event_id=3e5635d8
+2026-09-22T13:05:56 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen3-8b
+2026-09-22T13:07:10 [INFO] app.pipeline — Scenario 6 complete in 175.95s — final risk: RiskLevel.CRITICAL
+2026-09-22T13:07:10 [INFO] app.pipeline — === Processing Scenario 7: Possible Fall ===
+2026-09-22T13:07:10 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T13:07:10 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T13:07:10 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T13:07:10 [INFO] app.rules.risk_scorer — Risk score computed: base=65, multiplier=1.00, final=65, level=RiskLevel.HIGH
+2026-09-22T13:07:10 [INFO] app.context.activity_detector — Fall detection: POSSIBLE_FALL — impact=10.23 g, followed by 2 low-motion readings
+2026-09-22T13:07:10 [INFO] app.rules.risk_scorer — Risk score computed: base=65, multiplier=1.15, final=74, level=RiskLevel.HIGH
+2026-09-22T13:07:10 [INFO] app.context.activity_detector — Fall detection: POSSIBLE_FALL — impact=10.23 g, followed by 3 low-motion readings
+2026-09-22T13:07:10 [INFO] app.rules.risk_scorer — Risk score computed: base=65, multiplier=1.30, final=84, level=RiskLevel.CRITICAL
+2026-09-22T13:07:10 [INFO] app.rules.rule_engine — RISK EVENT created: id=e2922e9f score=84 level=RiskLevel.CRITICAL
+2026-09-22T13:07:10 [INFO] app.pipeline — Scenario 7: Risk event detected — calling AI pipeline.
+2026-09-22T13:07:10 [INFO] app.ai.cause_agent — Agent 1: sending request for event_id=e2922e9f
+2026-09-22T13:07:10 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen3-8b
+2026-09-22T13:08:47 [WARNING] app.ai.cause_validator — Cause REJECTED: 'Post-fall immobility triggering stress response' → NOT_SUPPORTED
+2026-09-22T13:08:47 [WARNING] app.ai.cause_validator — Cause REJECTED: 'Anxiety-induced sympathetic activation' → INSUFFICIENT_DATA
+2026-09-22T13:08:47 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Sensor artifact from vigorous movement' → PARTIALLY_SUPPORTED
+2026-09-22T13:08:47 [INFO] app.ai.precaution_agent — Agent 2: sending request for event_id=e2922e9f
+2026-09-22T13:08:47 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen3-8b
+2026-09-22T13:09:53 [INFO] app.pipeline — Scenario 7 complete in 163.33s — final risk: RiskLevel.CRITICAL
+2026-09-22T13:09:53 [INFO] app.pipeline — === Processing Scenario 8: High Altitude SpO2 Decrease ===
+2026-09-22T13:09:53 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T13:09:53 [INFO] app.rules.risk_scorer — Risk score computed: base=8, multiplier=1.00, final=8, level=RiskLevel.NORMAL
+2026-09-22T13:09:53 [INFO] app.rules.risk_scorer — Risk score computed: base=8, multiplier=1.15, final=9, level=RiskLevel.NORMAL
+2026-09-22T13:09:53 [INFO] app.rules.risk_scorer — Risk score computed: base=23, multiplier=1.30, final=29, level=RiskLevel.LOW
+2026-09-22T13:09:53 [INFO] app.rules.risk_scorer — Risk score computed: base=45, multiplier=1.40, final=62, level=RiskLevel.HIGH
+2026-09-22T13:09:53 [INFO] app.rules.rule_engine — RISK EVENT created: id=fe30b1a1 score=62 level=RiskLevel.HIGH
+2026-09-22T13:09:53 [INFO] app.pipeline — Scenario 8: Risk event detected — calling AI pipeline.
+2026-09-22T13:09:53 [INFO] app.ai.cause_agent — Agent 1: sending request for event_id=fe30b1a1
+2026-09-22T13:09:53 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen3-8b
+2026-09-22T13:13:54 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Altitude-induced hypoxia' → SUPPORTED
+2026-09-22T13:13:54 [WARNING] app.ai.cause_validator — Cause REJECTED: 'Cold-induced vasoconstriction' → INSUFFICIENT_DATA
+2026-09-22T13:13:54 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Sensor calibration drift at high altitude' → SUPPORTED
+2026-09-22T13:13:54 [INFO] app.ai.precaution_agent — Agent 2: sending request for event_id=fe30b1a1
+2026-09-22T13:13:54 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen3-8b
+2026-09-22T13:14:43 [INFO] app.pipeline — Scenario 8 complete in 289.43s — final risk: RiskLevel.HIGH
+2026-09-22T14:33:08 [INFO] app.ai.llm_client — LM Studio is available at http://127.0.0.1:1234/v1
+2026-09-22T14:33:08 [INFO] app.pipeline — === Processing Scenario 1: Normal Rest ===
+2026-09-22T14:33:08 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:33:08 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:33:08 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:33:08 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:33:08 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:33:08 [INFO] app.pipeline — Scenario 1 complete in 0.00s — final risk: RiskLevel.NORMAL
+2026-09-22T14:33:08 [INFO] app.pipeline — === Processing Scenario 2: Normal Exercise ===
+2026-09-22T14:33:08 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:33:08 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:33:08 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:33:08 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:33:08 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:33:08 [INFO] app.pipeline — Scenario 2 complete in 0.00s — final risk: RiskLevel.NORMAL
+2026-09-22T14:33:08 [INFO] app.pipeline — === Processing Scenario 3: Elevated Resting Heart Rate ===
+2026-09-22T14:33:08 [INFO] app.rules.risk_scorer — Risk score computed: base=23, multiplier=1.00, final=23, level=RiskLevel.LOW
+2026-09-22T14:33:08 [INFO] app.rules.risk_scorer — Risk score computed: base=30, multiplier=1.15, final=34, level=RiskLevel.LOW
+2026-09-22T14:33:08 [INFO] app.rules.risk_scorer — Risk score computed: base=30, multiplier=1.30, final=39, level=RiskLevel.LOW
+2026-09-22T14:33:08 [INFO] app.rules.risk_scorer — Risk score computed: base=30, multiplier=1.40, final=42, level=RiskLevel.MODERATE
+2026-09-22T14:33:08 [INFO] app.rules.rule_engine — RISK EVENT created: id=389487bb score=42 level=RiskLevel.MODERATE
+2026-09-22T14:33:08 [INFO] app.rules.risk_scorer — Risk score computed: base=40, multiplier=1.50, final=60, level=RiskLevel.MODERATE
+2026-09-22T14:33:08 [INFO] app.rules.rule_engine — RISK EVENT created: id=0012110f score=60 level=RiskLevel.MODERATE
+2026-09-22T14:33:08 [INFO] app.pipeline — Scenario 3: Risk event detected — calling AI pipeline.
+2026-09-22T14:33:08 [INFO] app.ai.cause_agent — Agent 1: sending request for event_id=0012110f
+2026-09-22T14:33:08 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:33:28 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Stress or Anxiety' → PARTIALLY_SUPPORTED
+2026-09-22T14:33:28 [WARNING] app.ai.cause_validator — Cause REJECTED: 'Physical Activity During Monitoring Session' → INSUFFICIENT_DATA
+2026-09-22T14:33:28 [INFO] app.ai.precaution_agent — Agent 2: sending request for event_id=0012110f
+2026-09-22T14:33:28 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:33:39 [INFO] app.pipeline — Scenario 3 complete in 30.98s — final risk: RiskLevel.MODERATE
+2026-09-22T14:33:39 [INFO] app.pipeline — === Processing Scenario 4: Low SpO2 ===
+2026-09-22T14:33:39 [INFO] app.rules.risk_scorer — Risk score computed: base=12, multiplier=1.00, final=12, level=RiskLevel.NORMAL
+2026-09-22T14:33:39 [INFO] app.rules.risk_scorer — Risk score computed: base=28, multiplier=1.15, final=32, level=RiskLevel.LOW
+2026-09-22T14:33:39 [INFO] app.rules.risk_scorer — Risk score computed: base=28, multiplier=1.30, final=36, level=RiskLevel.LOW
+2026-09-22T14:33:39 [INFO] app.rules.risk_scorer — Risk score computed: base=40, multiplier=1.40, final=56, level=RiskLevel.MODERATE
+2026-09-22T14:33:39 [INFO] app.rules.rule_engine — RISK EVENT created: id=e8b7b1da score=56 level=RiskLevel.MODERATE
+2026-09-22T14:33:39 [INFO] app.rules.risk_scorer — Risk score computed: base=40, multiplier=1.50, final=60, level=RiskLevel.MODERATE
+2026-09-22T14:33:39 [INFO] app.rules.rule_engine — RISK EVENT created: id=674d27c2 score=60 level=RiskLevel.MODERATE
+2026-09-22T14:33:39 [INFO] app.pipeline — Scenario 4: Risk event detected — calling AI pipeline.
+2026-09-22T14:33:39 [INFO] app.ai.cause_agent — Agent 1: sending request for event_id=674d27c2
+2026-09-22T14:33:39 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:33:58 [WARNING] app.ai.cause_validator — Cause REJECTED: 'Environmental Factors' → INSUFFICIENT_DATA
+2026-09-22T14:33:58 [WARNING] app.ai.cause_validator — Cause REJECTED: 'Minor Physiological Variations' → INSUFFICIENT_DATA
+2026-09-22T14:33:58 [INFO] app.ai.precaution_agent — Agent 2: no validated causes to act on.
+2026-09-22T14:33:58 [INFO] app.pipeline — Scenario 4 complete in 18.38s — final risk: RiskLevel.MODERATE
+2026-09-22T14:33:58 [INFO] app.pipeline — === Processing Scenario 5: Heat Stress ===
+2026-09-22T14:33:58 [INFO] app.rules.risk_scorer — Risk score computed: base=5, multiplier=1.00, final=5, level=RiskLevel.NORMAL
+2026-09-22T14:33:58 [INFO] app.rules.risk_scorer — Risk score computed: base=50, multiplier=1.15, final=57, level=RiskLevel.MODERATE
+2026-09-22T14:33:58 [INFO] app.rules.risk_scorer — Risk score computed: base=50, multiplier=1.30, final=65, level=RiskLevel.HIGH
+2026-09-22T14:33:58 [INFO] app.rules.rule_engine — RISK EVENT created: id=deb0d62f score=65 level=RiskLevel.HIGH
+2026-09-22T14:33:58 [INFO] app.rules.risk_scorer — Risk score computed: base=77, multiplier=1.40, final=100, level=RiskLevel.CRITICAL
+2026-09-22T14:33:58 [INFO] app.rules.rule_engine — RISK EVENT created: id=bab39e38 score=100 level=RiskLevel.CRITICAL
+2026-09-22T14:33:58 [INFO] app.rules.risk_scorer — Risk score computed: base=77, multiplier=1.50, final=100, level=RiskLevel.CRITICAL
+2026-09-22T14:33:58 [INFO] app.rules.rule_engine — RISK EVENT created: id=2de894b2 score=100 level=RiskLevel.CRITICAL
+2026-09-22T14:33:58 [INFO] app.pipeline — Scenario 5: Risk event detected — calling AI pipeline.
+2026-09-22T14:33:58 [INFO] app.ai.cause_agent — Agent 1: sending request for event_id=bab39e38
+2026-09-22T14:33:58 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:34:16 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Possible Fever' → SUPPORTED
+2026-09-22T14:34:16 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Heat-Related Physiological Stress' → SUPPORTED
+2026-09-22T14:34:16 [INFO] app.ai.precaution_agent — Agent 2: sending request for event_id=bab39e38
+2026-09-22T14:34:16 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:34:27 [INFO] app.pipeline — Scenario 5 complete in 28.97s — final risk: RiskLevel.CRITICAL
+2026-09-22T14:34:27 [INFO] app.pipeline — === Processing Scenario 6: Elevated Temperature + Resting HR ===
+2026-09-22T14:34:27 [INFO] app.rules.risk_scorer — Risk score computed: base=27, multiplier=1.00, final=27, level=RiskLevel.LOW
+2026-09-22T14:34:27 [INFO] app.rules.risk_scorer — Risk score computed: base=27, multiplier=1.15, final=31, level=RiskLevel.LOW
+2026-09-22T14:34:27 [INFO] app.rules.risk_scorer — Risk score computed: base=27, multiplier=1.30, final=35, level=RiskLevel.LOW
+2026-09-22T14:34:27 [INFO] app.rules.risk_scorer — Risk score computed: base=55, multiplier=1.40, final=77, level=RiskLevel.HIGH
+2026-09-22T14:34:27 [INFO] app.rules.rule_engine — RISK EVENT created: id=ff826901 score=77 level=RiskLevel.HIGH
+2026-09-22T14:34:27 [INFO] app.rules.risk_scorer — Risk score computed: base=55, multiplier=1.50, final=82, level=RiskLevel.CRITICAL
+2026-09-22T14:34:27 [INFO] app.rules.rule_engine — RISK EVENT created: id=b1b66fb0 score=82 level=RiskLevel.CRITICAL
+2026-09-22T14:34:27 [INFO] app.pipeline — Scenario 6: Risk event detected — calling AI pipeline.
+2026-09-22T14:34:27 [INFO] app.ai.cause_agent — Agent 1: sending request for event_id=b1b66fb0
+2026-09-22T14:34:27 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:34:48 [WARNING] app.ai.cause_validator — Cause REJECTED: 'Elevated Body Temperature' → INSUFFICIENT_DATA
+2026-09-22T14:34:48 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Elevated Resting Heart Rate' → SUPPORTED
+2026-09-22T14:34:48 [INFO] app.ai.precaution_agent — Agent 2: sending request for event_id=b1b66fb0
+2026-09-22T14:34:48 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:34:58 [INFO] app.pipeline — Scenario 6 complete in 31.74s — final risk: RiskLevel.CRITICAL
+2026-09-22T14:34:58 [INFO] app.pipeline — === Processing Scenario 7: Possible Fall ===
+2026-09-22T14:34:58 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:34:58 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:34:58 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:34:58 [INFO] app.rules.risk_scorer — Risk score computed: base=65, multiplier=1.00, final=65, level=RiskLevel.HIGH
+2026-09-22T14:34:58 [INFO] app.context.activity_detector — Fall detection: POSSIBLE_FALL — impact=10.23 g, followed by 2 low-motion readings
+2026-09-22T14:34:58 [INFO] app.rules.risk_scorer — Risk score computed: base=65, multiplier=1.15, final=74, level=RiskLevel.HIGH
+2026-09-22T14:34:58 [INFO] app.context.activity_detector — Fall detection: POSSIBLE_FALL — impact=10.23 g, followed by 3 low-motion readings
+2026-09-22T14:34:58 [INFO] app.rules.risk_scorer — Risk score computed: base=65, multiplier=1.30, final=84, level=RiskLevel.CRITICAL
+2026-09-22T14:34:58 [INFO] app.rules.rule_engine — RISK EVENT created: id=40f23f43 score=84 level=RiskLevel.CRITICAL
+2026-09-22T14:34:58 [INFO] app.pipeline — Scenario 7: Risk event detected — calling AI pipeline.
+2026-09-22T14:34:58 [INFO] app.ai.cause_agent — Agent 1: sending request for event_id=40f23f43
+2026-09-22T14:34:58 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:35:20 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Possible Fall' → SUPPORTED
+2026-09-22T14:35:20 [WARNING] app.ai.cause_validator — Cause REJECTED: 'Muscle Fatigue or Overexertion' → INSUFFICIENT_DATA
+2026-09-22T14:35:20 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Sensor Artifacts or Interference' → PARTIALLY_SUPPORTED
+2026-09-22T14:35:20 [INFO] app.ai.precaution_agent — Agent 2: sending request for event_id=40f23f43
+2026-09-22T14:35:20 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:35:33 [INFO] app.pipeline — Scenario 7 complete in 34.49s — final risk: RiskLevel.CRITICAL
+2026-09-22T14:35:33 [INFO] app.pipeline — === Processing Scenario 8: High Altitude SpO2 Decrease ===
+2026-09-22T14:35:33 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:35:33 [INFO] app.rules.risk_scorer — Risk score computed: base=8, multiplier=1.00, final=8, level=RiskLevel.NORMAL
+2026-09-22T14:35:33 [INFO] app.rules.risk_scorer — Risk score computed: base=8, multiplier=1.15, final=9, level=RiskLevel.NORMAL
+2026-09-22T14:35:33 [INFO] app.rules.risk_scorer — Risk score computed: base=23, multiplier=1.30, final=29, level=RiskLevel.LOW
+2026-09-22T14:35:33 [INFO] app.rules.risk_scorer — Risk score computed: base=45, multiplier=1.40, final=62, level=RiskLevel.HIGH
+2026-09-22T14:35:33 [INFO] app.rules.rule_engine — RISK EVENT created: id=c04a5826 score=62 level=RiskLevel.HIGH
+2026-09-22T14:35:33 [INFO] app.pipeline — Scenario 8: Risk event detected — calling AI pipeline.
+2026-09-22T14:35:33 [INFO] app.ai.cause_agent — Agent 1: sending request for event_id=c04a5826
+2026-09-22T14:35:33 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:35:56 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Hypoxia' → SUPPORTED
+2026-09-22T14:35:56 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Sensor Artifact' → PARTIALLY_SUPPORTED
+2026-09-22T14:35:56 [INFO] app.ai.precaution_agent — Agent 2: sending request for event_id=c04a5826
+2026-09-22T14:35:56 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:36:10 [INFO] app.pipeline — Scenario 8 complete in 37.27s — final risk: RiskLevel.HIGH
+2026-09-22T14:43:15 [INFO] app.ai.llm_client — LM Studio is available at http://127.0.0.1:1234/v1
+2026-09-22T14:43:15 [INFO] app.pipeline — === Processing Scenario 1: Normal Rest ===
+2026-09-22T14:43:15 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:43:15 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:43:15 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:43:15 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:43:15 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:43:15 [INFO] app.pipeline — Scenario 1 complete in 0.00s — final risk: RiskLevel.NORMAL
+2026-09-22T14:43:15 [INFO] app.pipeline — === Processing Scenario 2: Normal Exercise ===
+2026-09-22T14:43:15 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:43:15 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:43:15 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:43:15 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:43:15 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:43:15 [INFO] app.pipeline — Scenario 2 complete in 0.00s — final risk: RiskLevel.NORMAL
+2026-09-22T14:43:15 [INFO] app.pipeline — === Processing Scenario 3: Elevated Resting Heart Rate ===
+2026-09-22T14:43:15 [INFO] app.rules.risk_scorer — Risk score computed: base=23, multiplier=1.00, final=23, level=RiskLevel.LOW
+2026-09-22T14:43:15 [INFO] app.rules.risk_scorer — Risk score computed: base=30, multiplier=1.15, final=34, level=RiskLevel.LOW
+2026-09-22T14:43:15 [INFO] app.rules.risk_scorer — Risk score computed: base=30, multiplier=1.30, final=39, level=RiskLevel.LOW
+2026-09-22T14:43:15 [INFO] app.rules.risk_scorer — Risk score computed: base=30, multiplier=1.40, final=42, level=RiskLevel.MODERATE
+2026-09-22T14:43:15 [INFO] app.rules.rule_engine — RISK EVENT created: id=1eac644e score=42 level=RiskLevel.MODERATE
+2026-09-22T14:43:15 [INFO] app.rules.risk_scorer — Risk score computed: base=40, multiplier=1.50, final=60, level=RiskLevel.MODERATE
+2026-09-22T14:43:15 [INFO] app.rules.rule_engine — RISK EVENT created: id=10164e9c score=60 level=RiskLevel.MODERATE
+2026-09-22T14:43:15 [INFO] app.pipeline — Scenario 3: Risk event detected — calling AI pipeline.
+2026-09-22T14:43:15 [INFO] app.ai.cause_agent — Agent 1: sending request for event_id=10164e9c
+2026-09-22T14:43:15 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:43:39 [WARNING] app.ai.cause_validator — Cause REJECTED: 'Environmental Factors' → INSUFFICIENT_DATA
+2026-09-22T14:43:39 [WARNING] app.ai.cause_validator — Cause REJECTED: 'Recent Physical Activity' → INSUFFICIENT_DATA
+2026-09-22T14:43:39 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Sensor Artifact' → PARTIALLY_SUPPORTED
+2026-09-22T14:43:39 [INFO] app.ai.precaution_agent — Agent 2: sending request for event_id=10164e9c
+2026-09-22T14:43:39 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:43:51 [INFO] app.pipeline — Scenario 3 complete in 36.04s — final risk: RiskLevel.MODERATE
+2026-09-22T14:43:51 [INFO] app.pipeline — === Processing Scenario 4: Low SpO2 ===
+2026-09-22T14:43:51 [INFO] app.rules.risk_scorer — Risk score computed: base=12, multiplier=1.00, final=12, level=RiskLevel.NORMAL
+2026-09-22T14:43:51 [INFO] app.rules.risk_scorer — Risk score computed: base=28, multiplier=1.15, final=32, level=RiskLevel.LOW
+2026-09-22T14:43:51 [INFO] app.rules.risk_scorer — Risk score computed: base=28, multiplier=1.30, final=36, level=RiskLevel.LOW
+2026-09-22T14:43:51 [INFO] app.rules.risk_scorer — Risk score computed: base=40, multiplier=1.40, final=56, level=RiskLevel.MODERATE
+2026-09-22T14:43:51 [INFO] app.rules.rule_engine — RISK EVENT created: id=8ec999fc score=56 level=RiskLevel.MODERATE
+2026-09-22T14:43:51 [INFO] app.rules.risk_scorer — Risk score computed: base=40, multiplier=1.50, final=60, level=RiskLevel.MODERATE
+2026-09-22T14:43:51 [INFO] app.rules.rule_engine — RISK EVENT created: id=896f5b29 score=60 level=RiskLevel.MODERATE
+2026-09-22T14:43:51 [INFO] app.pipeline — Scenario 4: Risk event detected — calling AI pipeline.
+2026-09-22T14:43:51 [INFO] app.ai.cause_agent — Agent 1: sending request for event_id=896f5b29
+2026-09-22T14:43:51 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:44:17 [WARNING] app.ai.cause_validator — Cause REJECTED: 'Possible hyperventilation or anxiety' → INSUFFICIENT_DATA
+2026-09-22T14:44:17 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Environmental factors affecting oxygen saturation' → PARTIALLY_SUPPORTED
+2026-09-22T14:44:17 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Sensor artifact or interference' → PARTIALLY_SUPPORTED
+2026-09-22T14:44:17 [INFO] app.ai.precaution_agent — Agent 2: sending request for event_id=896f5b29
+2026-09-22T14:44:17 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:44:30 [INFO] app.pipeline — Scenario 4 complete in 39.28s — final risk: RiskLevel.MODERATE
+2026-09-22T14:44:30 [INFO] app.pipeline — === Processing Scenario 5: Heat Stress ===
+2026-09-22T14:44:30 [INFO] app.rules.risk_scorer — Risk score computed: base=5, multiplier=1.00, final=5, level=RiskLevel.NORMAL
+2026-09-22T14:44:30 [INFO] app.rules.risk_scorer — Risk score computed: base=50, multiplier=1.15, final=57, level=RiskLevel.MODERATE
+2026-09-22T14:44:30 [INFO] app.rules.risk_scorer — Risk score computed: base=50, multiplier=1.30, final=65, level=RiskLevel.HIGH
+2026-09-22T14:44:30 [INFO] app.rules.rule_engine — RISK EVENT created: id=f75383ba score=65 level=RiskLevel.HIGH
+2026-09-22T14:44:30 [INFO] app.rules.risk_scorer — Risk score computed: base=77, multiplier=1.40, final=100, level=RiskLevel.CRITICAL
+2026-09-22T14:44:30 [INFO] app.rules.rule_engine — RISK EVENT created: id=187ec077 score=100 level=RiskLevel.CRITICAL
+2026-09-22T14:44:30 [INFO] app.rules.risk_scorer — Risk score computed: base=77, multiplier=1.50, final=100, level=RiskLevel.CRITICAL
+2026-09-22T14:44:30 [INFO] app.rules.rule_engine — RISK EVENT created: id=06c31fd0 score=100 level=RiskLevel.CRITICAL
+2026-09-22T14:44:30 [INFO] app.pipeline — Scenario 5: Risk event detected — calling AI pipeline.
+2026-09-22T14:44:30 [INFO] app.ai.cause_agent — Agent 1: sending request for event_id=187ec077
+2026-09-22T14:44:30 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:44:51 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Possible Heat-Related Physiological Stress' → SUPPORTED
+2026-09-22T14:44:51 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Elevated Heart Rate During Activity' → SUPPORTED
+2026-09-22T14:44:51 [INFO] app.ai.precaution_agent — Agent 2: sending request for event_id=187ec077
+2026-09-22T14:44:51 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:45:04 [INFO] app.pipeline — Scenario 5 complete in 34.41s — final risk: RiskLevel.CRITICAL
+2026-09-22T14:45:04 [INFO] app.pipeline — === Processing Scenario 6: Elevated Temperature + Resting HR ===
+2026-09-22T14:45:04 [INFO] app.rules.risk_scorer — Risk score computed: base=27, multiplier=1.00, final=27, level=RiskLevel.LOW
+2026-09-22T14:45:04 [INFO] app.rules.risk_scorer — Risk score computed: base=27, multiplier=1.15, final=31, level=RiskLevel.LOW
+2026-09-22T14:45:04 [INFO] app.rules.risk_scorer — Risk score computed: base=27, multiplier=1.30, final=35, level=RiskLevel.LOW
+2026-09-22T14:45:04 [INFO] app.rules.risk_scorer — Risk score computed: base=55, multiplier=1.40, final=77, level=RiskLevel.HIGH
+2026-09-22T14:45:04 [INFO] app.rules.rule_engine — RISK EVENT created: id=cb5b944a score=77 level=RiskLevel.HIGH
+2026-09-22T14:45:04 [INFO] app.rules.risk_scorer — Risk score computed: base=55, multiplier=1.50, final=82, level=RiskLevel.CRITICAL
+2026-09-22T14:45:04 [INFO] app.rules.rule_engine — RISK EVENT created: id=27d72198 score=82 level=RiskLevel.CRITICAL
+2026-09-22T14:45:04 [INFO] app.pipeline — Scenario 6: Risk event detected — calling AI pipeline.
+2026-09-22T14:45:04 [INFO] app.ai.cause_agent — Agent 1: sending request for event_id=27d72198
+2026-09-22T14:45:04 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:45:30 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Fever' → SUPPORTED
+2026-09-22T14:45:30 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Illness or Physiological Stress' → SUPPORTED
+2026-09-22T14:45:30 [INFO] app.ai.precaution_agent — Agent 2: sending request for event_id=27d72198
+2026-09-22T14:45:30 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:45:44 [INFO] app.pipeline — Scenario 6 complete in 39.51s — final risk: RiskLevel.CRITICAL
+2026-09-22T14:45:44 [INFO] app.pipeline — === Processing Scenario 7: Possible Fall ===
+2026-09-22T14:45:44 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:45:44 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:45:44 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:45:44 [INFO] app.rules.risk_scorer — Risk score computed: base=65, multiplier=1.00, final=65, level=RiskLevel.HIGH
+2026-09-22T14:45:44 [INFO] app.context.activity_detector — Fall detection: POSSIBLE_FALL — impact=10.23 g, followed by 2 low-motion readings
+2026-09-22T14:45:44 [INFO] app.rules.risk_scorer — Risk score computed: base=65, multiplier=1.15, final=74, level=RiskLevel.HIGH
+2026-09-22T14:45:44 [INFO] app.context.activity_detector — Fall detection: POSSIBLE_FALL — impact=10.23 g, followed by 3 low-motion readings
+2026-09-22T14:45:44 [INFO] app.rules.risk_scorer — Risk score computed: base=65, multiplier=1.30, final=84, level=RiskLevel.CRITICAL
+2026-09-22T14:45:44 [INFO] app.rules.rule_engine — RISK EVENT created: id=81b7b35f score=84 level=RiskLevel.CRITICAL
+2026-09-22T14:45:44 [INFO] app.pipeline — Scenario 7: Risk event detected — calling AI pipeline.
+2026-09-22T14:45:44 [INFO] app.ai.cause_agent — Agent 1: sending request for event_id=81b7b35f
+2026-09-22T14:45:44 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:46:08 [WARNING] app.ai.cause_validator — Cause REJECTED: 'Accident or slip' → INSUFFICIENT_DATA
+2026-09-22T14:46:08 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Sensor artifact due to movement' → PARTIALLY_SUPPORTED
+2026-09-22T14:46:08 [WARNING] app.ai.cause_validator — Cause REJECTED: 'Environmental factors' → INSUFFICIENT_DATA
+2026-09-22T14:46:08 [INFO] app.ai.precaution_agent — Agent 2: sending request for event_id=81b7b35f
+2026-09-22T14:46:08 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:46:19 [INFO] app.pipeline — Scenario 7 complete in 35.03s — final risk: RiskLevel.CRITICAL
+2026-09-22T14:46:19 [INFO] app.pipeline — === Processing Scenario 8: High Altitude SpO2 Decrease ===
+2026-09-22T14:46:19 [INFO] app.rules.risk_scorer — Risk score computed: base=0, multiplier=1.50, final=0, level=RiskLevel.NORMAL
+2026-09-22T14:46:19 [INFO] app.rules.risk_scorer — Risk score computed: base=8, multiplier=1.00, final=8, level=RiskLevel.NORMAL
+2026-09-22T14:46:19 [INFO] app.rules.risk_scorer — Risk score computed: base=8, multiplier=1.15, final=9, level=RiskLevel.NORMAL
+2026-09-22T14:46:19 [INFO] app.rules.risk_scorer — Risk score computed: base=23, multiplier=1.30, final=29, level=RiskLevel.LOW
+2026-09-22T14:46:19 [INFO] app.rules.risk_scorer — Risk score computed: base=45, multiplier=1.40, final=62, level=RiskLevel.HIGH
+2026-09-22T14:46:19 [INFO] app.rules.rule_engine — RISK EVENT created: id=d5874472 score=62 level=RiskLevel.HIGH
+2026-09-22T14:46:19 [INFO] app.pipeline — Scenario 8: Risk event detected — calling AI pipeline.
+2026-09-22T14:46:19 [INFO] app.ai.cause_agent — Agent 1: sending request for event_id=d5874472
+2026-09-22T14:46:19 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:46:44 [WARNING] app.ai.cause_validator — Cause REJECTED: 'Hypoxemia' → INSUFFICIENT_DATA
+2026-09-22T14:46:44 [INFO] app.ai.cause_validator — Cause PASSED validation: 'Altitude-related artifact' → SUPPORTED
+2026-09-22T14:46:44 [INFO] app.ai.precaution_agent — Agent 2: sending request for event_id=d5874472
+2026-09-22T14:46:44 [INFO] app.ai.llm_client — Sending request to LM Studio model=qwen2.5-3b-instruct
+2026-09-22T14:46:57 [INFO] app.pipeline — Scenario 8 complete in 38.03s — final risk: RiskLevel.HIGH

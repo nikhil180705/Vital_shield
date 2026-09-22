@@ -1,0 +1,1047 @@
+﻿
+================================================================
+  HEALTH RISK MONITORING SYSTEM
+  Real-Time Wearable AI Analysis Prototype
+================================================================
+  Terminal Prototype  -  All output to terminal
+────────────────────────────────────────────────────────────────
+  Model      : qwen2.5-3b-instruct
+  LM Studio  : http://127.0.0.1:1234/v1
+  LLM Status : [CONNECTED]
+================================================================
+
+  Running 8 mock scenarios...
+
+  Scenario 01: Normal Rest                         NORMAL 
+  Scenario 02: Normal Exercise                     NORMAL 
+  Scenario 03: Elevated Resting Heart Rate         MODERATE  → AI ANALYSIS 
+  Scenario 04: Low SpO2                            MODERATE  → AI ANALYSIS 
+  Scenario 05: Heat Stress                         CRITICAL  → AI ANALYSIS 
+  Scenario 06: Elevated Temperature + Resting HR   CRITICAL  → AI ANALYSIS 
+  Scenario 07: Possible Fall                       CRITICAL  → AI ANALYSIS 🚨
+  Scenario 08: High Altitude SpO2 Decrease         HIGH  → AI ANALYSIS ⛰
+
+
+════════════════════════════════════════════════════════════════
+SCENARIO 1: NORMAL REST
+════════════════════════════════════════════════════════════════
+  User resting at home. All vitals within normal ranges.
+  Expected: NORMAL — No risk event, no AI call.
+  Readings processed: 5
+
+────────────────────────────────────────────────────────────────
+RAW SENSOR DATA
+────────────────────────────────────────────────────────────────
+  ❓ Activity State    : ActivityState.REST
+
+  Heart Rate            : 72.0 bpm
+  SpO2                  : 98.0 %
+  Body Temperature      : 36.7 °C
+  Environ Temp          : 25.0 °C
+  Humidity              : 55.0 %
+  Altitude              : 50.0 m
+  Pressure              : 1012.0 hPa
+  Accel X               : 0.0 g
+  Accel Y               : 0.0 g
+  Accel Z               : 1.0 g
+  Accel Magnitude       : 1.0 g
+
+────────────────────────────────────────────────────────────────
+DATA VALIDATION
+────────────────────────────────────────────────────────────────
+  Status  : ✓ VALID
+  All fields within plausible ranges.
+
+────────────────────────────────────────────────────────────────
+RULE ENGINE  (Deterministic — LLM not involved)
+────────────────────────────────────────────────────────────────
+  No rules triggered.
+
+  Risk Score  : 0/100
+  Risk Level  : NORMAL
+
+────────────────────────────────────────────────────────────────
+DECISION
+────────────────────────────────────────────────────────────────
+  ✓ No significant risk detected.
+  ✓ AI analysis not required.
+
+════════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════════
+SCENARIO 2: NORMAL EXERCISE
+════════════════════════════════════════════════════════════════
+  User jogging. Elevated HR with matching high accelerometer activity.
+  Expected: NORMAL_PHYSIOLOGICAL_ACTIVITY — Elevated HR expected during running. No AI call.
+  Readings processed: 5
+
+────────────────────────────────────────────────────────────────
+RAW SENSOR DATA
+────────────────────────────────────────────────────────────────
+  ❓ Activity State    : ActivityState.WALKING
+
+  Heart Rate            : 80.0 bpm
+  SpO2                  : 97.0 %
+  Body Temperature      : 36.9 °C
+  Environ Temp          : 24.0 °C
+  Humidity              : 50.0 %
+  Altitude              : 55.0 m
+  Pressure              : 1011.5 hPa
+  Accel X               : 0.3 g
+  Accel Y               : 1.2 g
+  Accel Z               : 0.9 g
+  Accel Magnitude       : 1.5 g
+
+────────────────────────────────────────────────────────────────
+DATA VALIDATION
+────────────────────────────────────────────────────────────────
+  Status  : ✓ VALID
+  All fields within plausible ranges.
+
+────────────────────────────────────────────────────────────────
+RULE ENGINE  (Deterministic — LLM not involved)
+────────────────────────────────────────────────────────────────
+  No rules triggered.
+
+  Risk Score  : 0/100
+  Risk Level  : NORMAL
+
+────────────────────────────────────────────────────────────────
+DECISION
+────────────────────────────────────────────────────────────────
+  ✓ No significant risk detected.
+  ✓ AI analysis not required.
+
+════════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════════
+SCENARIO 3: ELEVATED RESTING HEART RATE
+════════════════════════════════════════════════════════════════
+  User at rest with persistently elevated HR (108–121 bpm). Low movement confirms rest state.
+  Expected: RISK EVENT — Resting tachycardia candidate. AI analysis triggered.
+  Readings processed: 5
+
+────────────────────────────────────────────────────────────────
+RAW SENSOR DATA
+────────────────────────────────────────────────────────────────
+  ❓ Activity State    : ActivityState.REST
+
+  Heart Rate            : 121.0 bpm
+  SpO2                  : 97.0 %
+  Body Temperature      : 36.9 °C
+  Environ Temp          : 24.0 °C
+  Humidity              : 52.0 %
+  Altitude              : 45.0 m
+  Pressure              : 1013.0 hPa
+  Accel X               : 0.0 g
+  Accel Y               : 0.0 g
+  Accel Z               : 1.0 g
+  Accel Magnitude       : 1.0 g
+  Altitude Δ            : 0.0 m
+  Pressure Δ            : 0.0 hPa
+
+────────────────────────────────────────────────────────────────
+DATA VALIDATION
+────────────────────────────────────────────────────────────────
+  Status  : ✓ VALID
+  All fields within plausible ranges.
+
+────────────────────────────────────────────────────────────────
+RULE ENGINE  (Deterministic — LLM not involved)
+────────────────────────────────────────────────────────────────
+  Triggered Rules:
+
+  [HR_REST_HIGH_001]
+    Elevated Resting Heart Rate
+    Resting HR 121.0 bpm exceeds resting-normal max 100 bpm (+49.0 bpm above personal baseline 72 bpm).
+    Score contribution: +25
+
+  [BASELINE_HR_DEV_001]
+    Significant HR Baseline Deviation
+    HR 121.0 bpm deviates 49.0 bpm from personal baseline 72 bpm (threshold: 20 bpm).
+    Score contribution: +5
+
+  Risk Score  : 60/100
+  Risk Level  : MODERATE
+  Persistence : 5 consecutive abnormal readings
+
+────────────────────────────────────────────────────────────────
+DECISION
+────────────────────────────────────────────────────────────────
+  ⚠ Risk event detected — risk level: MODERATE
+  → Triggering AI analysis pipeline...
+
+────────────────────────────────────────────────────────────────
+AI AGENT 1 — CAUSE ANALYSIS
+────────────────────────────────────────────────────────────────
+  Interpretation:
+  The detected heart rate of 121.0 beats per minute during rest may be consistent with elevated resting heart rate, potentially due to environmental factors or recent physical activity.
+
+  Possible causes:
+
+  1. Environmental Factors
+     Confidence: 0.60
+     Supporting:
+       + Accel Magnitude: 0.99 g
+       + Environment Temp: 24.0 °C
+
+  2. Recent Physical Activity
+     Confidence: 0.30
+     Supporting:
+       + HR_REST_HIGH_001 triggered
+       + BASELINE_HR_DEV_001 triggered
+     Contradicting:
+       - No significant recent physical activity detected
+
+  3. Sensor Artifact
+     Confidence: 0.10
+     Contradicting:
+       - Heart rate within normal range for rest
+       - No other sensor readings deviating from baseline
+
+  Alternative explanations:
+    • Stress or Anxiety
+    • Dehydration
+    • Medication Side Effects
+
+  Missing information:
+    ? Recent physical activity details
+    ? Environmental conditions during the event
+
+────────────────────────────────────────────────────────────────
+CAUSE VALIDATION  (Deterministic)
+────────────────────────────────────────────────────────────────
+
+  Cause  : Environmental Factors
+  Status : INSUFFICIENT_DATA
+  Evidence:
+    ✓ Accel Magnitude: 0.99 g
+    ✓ Environment Temp: 24.0 °C
+  → Rejected — not passed to Agent 2
+
+  Cause  : Recent Physical Activity
+  Status : INSUFFICIENT_DATA
+  Evidence:
+    ✓ HR_REST_HIGH_001 triggered
+    ✓ BASELINE_HR_DEV_001 triggered
+  Contradictions:
+    ✗ No significant recent physical activity detected
+  → Rejected — not passed to Agent 2
+
+  Cause  : Sensor Artifact
+  Status : PARTIALLY_SUPPORTED
+  Evidence:
+    ✓ Wrist-based sensors have known accuracy limitations
+    ✓ Movement artifacts can affect SpO2 and HR readings
+  Contradictions:
+    ✗ Heart rate within normal range for rest
+    ✗ No other sensor readings deviating from baseline
+  → Passed to Agent 2
+
+  1 cause(s) passed validation and will be sent to Agent 2. 2 cause(s) rejected due to insufficient sensor evidence.
+
+────────────────────────────────────────────────────────────────
+AI AGENT 2 — PRECAUTION RECOMMENDATIONS
+────────────────────────────────────────────────────────────────
+
+  Condition Summary:
+  Heart rate is elevated (121 bpm) and SpO2 level is normal (97%). These readings may be influenced by movement artifacts typical of wrist-based sensors.
+
+  Immediate Precautions:
+    1. Consider reducing physical activity to see if heart rate returns to baseline
+
+  Monitoring Steps:
+    1. Monitor for any changes in heart rate or SpO2 levels over the next few hours
+
+  Seek Medical Attention If:
+    1. Persistent elevation of heart rate, persistent drop in SpO2 level, or new onset symptoms
+
+  Reasoning: The readings may be affected by movement artifacts. Professional evaluation is recommended for any concerning changes.
+
+────────────────────────────────────────────────────────────────
+FINAL SYSTEM RESULT
+────────────────────────────────────────────────────────────────
+  Risk Level : MODERATE
+  Cause      : Sensor Artifact
+  Validation : PARTIALLY_SUPPORTED
+  Action     : Consider reducing physical activity to see if heart rate returns to baseline
+
+  Processing time: 36.04s
+
+════════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════════
+SCENARIO 4: LOW SPO2
+════════════════════════════════════════════════════════════════
+  User at rest with progressively declining SpO2 (92% → 88%). Persistent over multiple readings.
+  Expected: CRITICAL/HIGH candidate — Possible low oxygen pattern. AI analysis triggered.
+  Readings processed: 5
+
+────────────────────────────────────────────────────────────────
+RAW SENSOR DATA
+────────────────────────────────────────────────────────────────
+  ❓ Activity State    : ActivityState.REST
+
+  Heart Rate            : 82.0 bpm
+  SpO2                  : 88.0 %
+  Body Temperature      : 36.8 °C
+  Environ Temp          : 23.0 °C
+  Humidity              : 48.0 %
+  Altitude              : 80.0 m
+  Pressure              : 1010.0 hPa
+  Accel X               : 0.0 g
+  Accel Y               : 0.0 g
+  Accel Z               : 1.0 g
+  Accel Magnitude       : 1.0 g
+  Altitude Δ            : 0.0 m
+  Pressure Δ            : 0.0 hPa
+
+────────────────────────────────────────────────────────────────
+DATA VALIDATION
+────────────────────────────────────────────────────────────────
+  Status  : ✓ VALID
+  All fields within plausible ranges.
+
+────────────────────────────────────────────────────────────────
+RULE ENGINE  (Deterministic — LLM not involved)
+────────────────────────────────────────────────────────────────
+  Triggered Rules:
+
+  [SPO2_CRITICAL_001]
+    Critical SpO2
+    SpO2 88.0% is below critical threshold 90.0%.
+    Score contribution: +40
+
+  Risk Score  : 60/100
+  Risk Level  : MODERATE
+  Persistence : 5 consecutive abnormal readings
+
+────────────────────────────────────────────────────────────────
+DECISION
+────────────────────────────────────────────────────────────────
+  ⚠ Risk event detected — risk level: MODERATE
+  → Triggering AI analysis pipeline...
+
+────────────────────────────────────────────────────────────────
+AI AGENT 1 — CAUSE ANALYSIS
+────────────────────────────────────────────────────────────────
+  Interpretation:
+  The patient's SpO2 reading is slightly below the baseline threshold of 90.0%.
+
+  Possible causes:
+
+  1. Possible hyperventilation or anxiety
+     Confidence: 0.00
+     Supporting:
+       + SpO2 at 88.0%
+       + patient in REST activity state
+     Contradicting:
+       - No significant change from baseline SpO2
+       - no other abnormal readings
+
+  2. Environmental factors affecting oxygen saturation
+     Confidence: 0.00
+     Supporting:
+       + SpO2 at 88.0%
+       + environmental humidity and temperature
+     Contradicting:
+       - No significant change from baseline SpO2
+       - no other abnormal readings
+
+  3. Sensor artifact or interference
+     Confidence: 0.00
+     Supporting:
+       + No significant change from previous readings
+       + consistent with patient's baseline SpO2
+     Contradicting:
+       - SpO2 at 88.0%
+       - no other abnormal readings
+
+  Alternative explanations:
+    • Patient is in a state of mild hyperventilation or anxiety
+    • Environmental conditions are affecting oxygen saturation levels
+
+  Missing information:
+    ? Previous SpO2 readings
+    ? Patient's recent activity and stress level
+
+────────────────────────────────────────────────────────────────
+CAUSE VALIDATION  (Deterministic)
+────────────────────────────────────────────────────────────────
+
+  Cause  : Possible hyperventilation or anxiety
+  Status : INSUFFICIENT_DATA
+  Evidence:
+    ✓ SpO2 at 88.0%
+    ✓ patient in REST activity state
+  Contradictions:
+    ✗ No significant change from baseline SpO2
+    ✗ no other abnormal readings
+  → Rejected — not passed to Agent 2
+
+  Cause  : Environmental factors affecting oxygen saturation
+  Status : PARTIALLY_SUPPORTED
+  Evidence:
+    ✓ SpO2 88.0% below critical threshold 90.0%
+    ✓ SpO2 at 88.0%
+    ✓ environmental humidity and temperature
+  Contradictions:
+    ✗ No significant change from baseline SpO2
+    ✗ no other abnormal readings
+  → Passed to Agent 2
+
+  Cause  : Sensor artifact or interference
+  Status : PARTIALLY_SUPPORTED
+  Evidence:
+    ✓ Wrist-based sensors have known accuracy limitations
+    ✓ Movement artifacts can affect SpO2 and HR readings
+    ✓ No significant change from previous readings
+    ✓ consistent with patient's baseline SpO2
+  Contradictions:
+    ✗ SpO2 at 88.0%
+    ✗ no other abnormal readings
+  → Passed to Agent 2
+
+  2 cause(s) passed validation and will be sent to Agent 2. 1 cause(s) rejected due to insufficient sensor evidence.
+
+────────────────────────────────────────────────────────────────
+AI AGENT 2 — PRECAUTION RECOMMENDATIONS
+────────────────────────────────────────────────────────────────
+
+  Condition Summary:
+  The sensor readings indicate a SpO2 level below the critical threshold and are influenced by environmental factors such as humidity and temperature, which may affect accuracy.
+
+  Immediate Precautions:
+    1. Monitor SpO2 levels closely
+    2. Consider wearing the device in a more stable environment
+
+  Monitoring Steps:
+    1. Continue to monitor heart rate and body temperature
+    2. Review previous readings for context
+
+  Seek Medical Attention If:
+    1. SpO2 consistently below 90.0%
+    2. Significant changes in other sensor readings
+
+  Reasoning: The current SpO2 level is below the recommended threshold, which may be affected by environmental factors. Consider wearing the device in a more stable environment to improve accuracy.
+
+────────────────────────────────────────────────────────────────
+FINAL SYSTEM RESULT
+────────────────────────────────────────────────────────────────
+  Risk Level : MODERATE
+  Cause      : Environmental factors affecting oxygen saturation
+  Validation : PARTIALLY_SUPPORTED
+  Action     : Monitor SpO2 levels closely
+
+  Processing time: 39.28s
+
+════════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════════
+SCENARIO 5: HEAT STRESS
+════════════════════════════════════════════════════════════════
+  User active outdoors. Env temp 38°C, humidity 82%, rising body temp and HR.
+  Expected: POSSIBLE_HEAT_STRESS event. AI analysis triggered.
+  Readings processed: 5
+
+────────────────────────────────────────────────────────────────
+RAW SENSOR DATA
+────────────────────────────────────────────────────────────────
+  ❓ Activity State    : ActivityState.WALKING
+
+  Heart Rate            : 112.0 bpm
+  SpO2                  : 96.0 %
+  Body Temperature      : 38.0 °C
+  Environ Temp          : 38.0 °C
+  Humidity              : 82.0 %
+  Altitude              : 30.0 m
+  Pressure              : 1010.5 hPa
+  Accel X               : 0.5 g
+  Accel Y               : 1.9 g
+  Accel Z               : 0.9 g
+  Accel Magnitude       : 2.2 g
+  Altitude Δ            : 0.0 m
+  Pressure Δ            : 0.0 hPa
+
+────────────────────────────────────────────────────────────────
+DATA VALIDATION
+────────────────────────────────────────────────────────────────
+  Status  : ✓ VALID
+  All fields within plausible ranges.
+
+────────────────────────────────────────────────────────────────
+RULE ENGINE  (Deterministic — LLM not involved)
+────────────────────────────────────────────────────────────────
+  Triggered Rules:
+
+  [TEMP_FEVER_001]
+    Elevated Body Temperature — Fever Candidate
+    Body temperature 38.0°C is in the fever-candidate band [38.0–39.0°C).
+    Score contribution: +12
+
+  [HEAT_STRESS_001]
+    Possible Heat-Related Physiological Stress
+    Heat stress composite: env_temp 38.0°C, humidity 82.0%, HR 112.0 bpm, body_temp 38.0°C — all above thresholds.
+    Score contribution: +30
+
+  [ILLNESS_PATTERN_001]
+    Possible Illness / Physiological Stress Pattern
+    Body temperature 38.0°C (≥38.0°C) with HR 112.0 bpm elevated during ActivityState.WALKING — possible illness/stress pattern.
+    Score contribution: +20
+
+  [BASELINE_HR_DEV_001]
+    Significant HR Baseline Deviation
+    HR 112.0 bpm deviates 40.0 bpm from personal baseline 72 bpm (threshold: 20 bpm).
+    Score contribution: +5
+
+  Risk Score  : 100/100
+  Risk Level  : CRITICAL
+  Persistence : 4 consecutive abnormal readings
+
+────────────────────────────────────────────────────────────────
+DECISION
+────────────────────────────────────────────────────────────────
+  ⚠ Risk event detected — risk level: CRITICAL
+  → Triggering AI analysis pipeline...
+
+────────────────────────────────────────────────────────────────
+AI AGENT 1 — CAUSE ANALYSIS
+────────────────────────────────────────────────────────────────
+  Interpretation:
+  The detected readings suggest a possible fever or heat-related stress condition during physical activity.
+
+  Possible causes:
+
+  1. Possible Heat-Related Physiological Stress
+     Confidence: 0.75
+     Supporting:
+       + Body temperature 38.0°C
+       + Environmental temperature and humidity levels
+
+  2. Elevated Heart Rate During Activity
+     Confidence: 0.65
+     Supporting:
+       + Heart rate at 112.0 bpm during walking activity
+       + Personal baseline heart rate of 72 bpm
+
+  Alternative explanations:
+    • Sensor artifact, environmental factors affecting readings
+    • Normal variation in body temperature and heart rate during physical exertion
+
+  Missing information:
+    ? Additional sensor data such as respiratory rate or skin temperature would help clarify the situation
+
+────────────────────────────────────────────────────────────────
+CAUSE VALIDATION  (Deterministic)
+────────────────────────────────────────────────────────────────
+
+  Cause  : Possible Heat-Related Physiological Stress
+  Status : SUPPORTED
+  Evidence:
+    ✓ Environment temperature 38.0°C ≥ 32.0°C
+    ✓ Humidity 82.0% ≥ 65.0%
+    ✓ Elevated HR 112.0 bpm consistent with heat stress response
+    ✓ Elevated body temperature 38.0°C
+  → Passed to Agent 2
+
+  Cause  : Elevated Heart Rate During Activity
+  Status : SUPPORTED
+  Evidence:
+    ✓ HR 112.0 bpm exceeds resting normal max (100 bpm)
+    ✓ HR elevated 40.0 bpm above personal baseline 72 bpm
+    ✓ Heart rate at 112.0 bpm during walking activity
+    ✓ Personal baseline heart rate of 72 bpm
+  → Passed to Agent 2
+
+  2 cause(s) passed validation and will be sent to Agent 2.
+
+────────────────────────────────────────────────────────────────
+AI AGENT 2 — PRECAUTION RECOMMENDATIONS
+────────────────────────────────────────────────────────────────
+
+  Condition Summary:
+  The detected pattern may indicate possible heat-related physiological stress or elevated heart rate during activity.
+
+  Immediate Precautions:
+    1. Reduce physical exertion and seek shade if available
+    2. Stay hydrated by drinking water
+
+  Monitoring Steps:
+    1. Monitor for any signs of discomfort, dizziness, or faintness
+    2. Continue to monitor heart rate and body temperature
+
+  Seek Medical Attention If:
+    1. Severe symptoms such as severe dizziness, nausea, or difficulty breathing occur
+
+  Reasoning: The detected pattern may indicate possible heat-related physiological stress or elevated heart rate during activity. Immediate reduction in physical exertion is advised to prevent potential complications.
+
+────────────────────────────────────────────────────────────────
+FINAL SYSTEM RESULT
+────────────────────────────────────────────────────────────────
+  Risk Level : CRITICAL
+  Cause      : Possible Heat-Related Physiological Stress
+  Validation : SUPPORTED
+  Action     : Reduce physical exertion and seek shade if available
+
+  Processing time: 34.41s
+
+════════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════════
+SCENARIO 6: ELEVATED TEMPERATURE + RESTING HR
+════════════════════════════════════════════════════════════════
+  User resting with fever-candidate body temperature and mildly elevated HR.
+  Expected: Possible illness/physiological stress pattern. AI analysis triggered.
+  Readings processed: 5
+
+────────────────────────────────────────────────────────────────
+RAW SENSOR DATA
+────────────────────────────────────────────────────────────────
+  ❓ Activity State    : ActivityState.REST
+
+  Heart Rate            : 104.0 bpm
+  SpO2                  : 96.5 %
+  Body Temperature      : 38.5 °C
+  Environ Temp          : 22.0 °C
+  Humidity              : 45.0 %
+  Altitude              : 40.0 m
+  Pressure              : 1012.0 hPa
+  Accel X               : 0.0 g
+  Accel Y               : 0.0 g
+  Accel Z               : 1.0 g
+  Accel Magnitude       : 1.0 g
+  Altitude Δ            : 0.0 m
+  Pressure Δ            : 0.0 hPa
+
+────────────────────────────────────────────────────────────────
+DATA VALIDATION
+────────────────────────────────────────────────────────────────
+  Status  : ✓ VALID
+  All fields within plausible ranges.
+
+────────────────────────────────────────────────────────────────
+RULE ENGINE  (Deterministic — LLM not involved)
+────────────────────────────────────────────────────────────────
+  Triggered Rules:
+
+  [HR_REST_HIGH_001]
+    Elevated Resting Heart Rate
+    Resting HR 104.0 bpm exceeds resting-normal max 100 bpm (+32.0 bpm above personal baseline 72 bpm).
+    Score contribution: +8
+
+  [TEMP_FEVER_001]
+    Elevated Body Temperature — Fever Candidate
+    Body temperature 38.5°C is in the fever-candidate band [38.0–39.0°C).
+    Score contribution: +12
+
+  [ILLNESS_PATTERN_001]
+    Possible Illness / Physiological Stress Pattern
+    Body temperature 38.5°C (≥38.0°C) with HR 104.0 bpm elevated during ActivityState.REST — possible illness/stress pattern.
+    Score contribution: +20
+
+  [BASELINE_HR_DEV_001]
+    Significant HR Baseline Deviation
+    HR 104.0 bpm deviates 32.0 bpm from personal baseline 72 bpm (threshold: 20 bpm).
+    Score contribution: +5
+
+  Risk Score  : 82/100
+  Risk Level  : CRITICAL
+  Persistence : 5 consecutive abnormal readings
+
+────────────────────────────────────────────────────────────────
+DECISION
+────────────────────────────────────────────────────────────────
+  ⚠ Risk event detected — risk level: CRITICAL
+  → Triggering AI analysis pipeline...
+
+────────────────────────────────────────────────────────────────
+AI AGENT 1 — CAUSE ANALYSIS
+────────────────────────────────────────────────────────────────
+  Interpretation:
+  The detected readings suggest a possible fever or elevated heart rate during rest, which could indicate illness or stress.
+
+  Possible causes:
+
+  1. Fever
+     Confidence: 0.70
+     Supporting:
+       + Body temperature 38.5°C is within the fever-candidate band [38.0–39.0°C).
+
+  2. Illness or Physiological Stress
+     Confidence: 0.60
+     Supporting:
+       + Body temperature 38.5°C (≥38.0°C) with elevated heart rate of 104.0 bpm during rest.
+
+  Alternative explanations:
+    • Sensor artifact, environmental factors such as room temperature or humidity affecting readings.
+    • Alternative physiological states like hyperthyroidism or dehydration not accounted for in baseline data.
+
+  Missing information:
+    ? Further sensor data during activity and additional personal health history to rule out common conditions that mimic fever or elevated heart rate.
+
+────────────────────────────────────────────────────────────────
+CAUSE VALIDATION  (Deterministic)
+────────────────────────────────────────────────────────────────
+
+  Cause  : Fever
+  Status : SUPPORTED
+  Evidence:
+    ✓ Body temperature 38.5°C ≥ fever-candidate threshold 38.0°C
+    ✓ Elevated resting HR 104.0 bpm may reflect physiological stress
+    ✓ Body temperature 38.5°C is within the fever-candidate band [38.0–39.0°C).
+  → Passed to Agent 2
+
+  Cause  : Illness or Physiological Stress
+  Status : SUPPORTED
+  Evidence:
+    ✓ Body temperature 38.5°C ≥ fever-candidate threshold 38.0°C
+    ✓ Elevated resting HR 104.0 bpm may reflect physiological stress
+    ✓ Body temperature 38.5°C (≥38.0°C) with elevated heart rate of 104.0 bpm during rest.
+  → Passed to Agent 2
+
+  2 cause(s) passed validation and will be sent to Agent 2.
+
+────────────────────────────────────────────────────────────────
+AI AGENT 2 — PRECAUTION RECOMMENDATIONS
+────────────────────────────────────────────────────────────────
+
+  Condition Summary:
+  The detected pattern includes elevated body temperature and resting heart rate during rest, which may indicate illness or physiological stress.
+
+  Immediate Precautions:
+    1. Stay in a cool environment if possible
+    2. Drink plenty of fluids to stay hydrated
+
+  Monitoring Steps:
+    1. Continue monitoring body temperature and heart rate for changes
+    2. Consider taking frequent breaks from physical activity if currently active
+
+  Seek Medical Attention If:
+    1. Persistent or increasing fever, significant increase in heart rate, difficulty breathing, severe fatigue
+
+  Reasoning: Given the elevated body temperature and resting heart rate during rest, these patterns may indicate illness or physiological stress. It is advisable to monitor closely and consider seeking medical evaluation if symptoms worsen.
+
+────────────────────────────────────────────────────────────────
+FINAL SYSTEM RESULT
+────────────────────────────────────────────────────────────────
+  Risk Level : CRITICAL
+  Cause      : Fever
+  Validation : SUPPORTED
+  Action     : Stay in a cool environment if possible
+
+  Processing time: 39.51s
+
+════════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════════
+SCENARIO 7: POSSIBLE FALL
+════════════════════════════════════════════════════════════════
+  User walking, sudden high-acceleration impact event, followed by near-zero movement (immobility).
+  Expected: POSSIBLE_FALL — HIGH risk event. AI analysis triggered.
+  Readings processed: 6
+
+────────────────────────────────────────────────────────────────
+RAW SENSOR DATA
+────────────────────────────────────────────────────────────────
+  ❓ Activity State    : ActivityState.POSSIBLE_FALL
+
+  Heart Rate            : 92.0 bpm
+  SpO2                  : 97.0 %
+  Body Temperature      : 36.8 °C
+  Environ Temp          : 22.0 °C
+  Humidity              : 50.0 %
+  Altitude              : 42.0 m
+  Pressure              : 1012.0 hPa
+  Accel X               : 0.1 g
+  Accel Y               : 0.1 g
+  Accel Z               : 0.9 g
+  Accel Magnitude       : 1.0 g
+  Altitude Δ            : 0.0 m
+  Pressure Δ            : 0.0 hPa
+
+────────────────────────────────────────────────────────────────
+DATA VALIDATION
+────────────────────────────────────────────────────────────────
+  Status  : ✓ VALID
+  All fields within plausible ranges.
+
+────────────────────────────────────────────────────────────────
+RULE ENGINE  (Deterministic — LLM not involved)
+────────────────────────────────────────────────────────────────
+  Triggered Rules:
+
+  [FALL_POSSIBLE_001]
+    Possible Fall Detected
+    Activity state classified as POSSIBLE_FALL: impact-level acceleration followed by post-event immobility.
+    Score contribution: +50
+
+  [BASELINE_HR_DEV_001]
+    Significant HR Baseline Deviation
+    HR 92.0 bpm deviates 20.0 bpm from personal baseline 72 bpm (threshold: 20 bpm).
+    Score contribution: +5
+
+  Risk Score  : 84/100
+  Risk Level  : CRITICAL
+  Persistence : 3 consecutive abnormal readings
+
+────────────────────────────────────────────────────────────────
+DECISION
+────────────────────────────────────────────────────────────────
+  ⚠ Risk event detected — risk level: CRITICAL
+  → Triggering AI analysis pipeline...
+  ⚠ POSSIBLE FALL DETECTED — URGENT REVIEW REQUIRED
+
+────────────────────────────────────────────────────────────────
+AI AGENT 1 — CAUSE ANALYSIS
+────────────────────────────────────────────────────────────────
+  Interpretation:
+  The system has detected a possible fall event based on accelerometer readings indicating immobility following an impact-level acceleration.
+
+  Possible causes:
+
+  1. Accident or slip
+     Confidence: 0.80
+     Supporting:
+       + accelerometer data showing sudden deceleration and immobility
+
+  2. Sensor artifact due to movement
+     Confidence: 0.10
+     Supporting:
+       + possible baseline HR deviation may be from physical activity rather than fall
+     Contradicting:
+       - accelerometer data showing sudden deceleration and immobility
+
+  3. Environmental factors
+     Confidence: 0.20
+     Supporting:
+       + environmental conditions such as slippery surfaces or uneven terrain may have contributed to the fall
+
+  Alternative explanations:
+    • user was near a slippery surface
+    • user tripped over something while walking
+
+  Missing information:
+    ? environmental conditions data such as temperature, humidity and presence of obstacles
+
+────────────────────────────────────────────────────────────────
+CAUSE VALIDATION  (Deterministic)
+────────────────────────────────────────────────────────────────
+
+  Cause  : Accident or slip
+  Status : INSUFFICIENT_DATA
+  Evidence:
+    ✓ accelerometer data showing sudden deceleration and immobility
+  → Rejected — not passed to Agent 2
+
+  Cause  : Sensor artifact due to movement
+  Status : PARTIALLY_SUPPORTED
+  Evidence:
+    ✓ Wrist-based sensors have known accuracy limitations
+    ✓ Movement artifacts can affect SpO2 and HR readings
+    ✓ possible baseline HR deviation may be from physical activity rather than fall
+  Contradictions:
+    ✗ accelerometer data showing sudden deceleration and immobility
+  → Passed to Agent 2
+
+  Cause  : Environmental factors
+  Status : INSUFFICIENT_DATA
+  Evidence:
+    ✓ environmental conditions such as slippery surfaces or uneven terrain may have contributed to the fall
+  → Rejected — not passed to Agent 2
+
+  1 cause(s) passed validation and will be sent to Agent 2. 2 cause(s) rejected due to insufficient sensor evidence.
+
+────────────────────────────────────────────────────────────────
+AI AGENT 2 — PRECAUTION RECOMMENDATIONS
+────────────────────────────────────────────────────────────────
+
+  Condition Summary:
+  The detected pattern suggests a possible movement artifact affecting heart rate and SpO2 readings due to activity level.
+
+  Immediate Precautions:
+    1. Monitor for any sudden changes in sensor readings or symptoms of injury
+
+  Monitoring Steps:
+    1. Continue monitoring heart rate, SpO2, and other vital signs
+    2. Consider additional validation steps if readings remain abnormal
+
+  Seek Medical Attention If:
+    1. Persistent or significant deviations from normal baseline values
+    2. Symptoms of injury or discomfort
+
+  Reasoning: The current readings may be influenced by physical activity rather than a fall. However, consider further monitoring and seek medical advice if symptoms persist or worsen.
+
+────────────────────────────────────────────────────────────────
+FINAL SYSTEM RESULT
+────────────────────────────────────────────────────────────────
+  Risk Level : CRITICAL
+  Cause      : Sensor artifact due to movement
+  Validation : PARTIALLY_SUPPORTED
+  Action     : Monitor for any sudden changes in sensor readings or symptoms of injury
+
+  Processing time: 35.03s
+
+════════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════════
+SCENARIO 8: HIGH ALTITUDE SPO2 DECREASE
+════════════════════════════════════════════════════════════════
+  User ascending to ~3200 m. Pressure drops, SpO2 gradually declines. Altitude context applied.
+  Expected: Altitude context included. SpO2 interpretation contextualized. AI analysis if threshold crossed.
+  Readings processed: 5
+
+────────────────────────────────────────────────────────────────
+RAW SENSOR DATA
+────────────────────────────────────────────────────────────────
+  ❓ Activity State    : ActivityState.REST
+
+  Heart Rate            : 90.0 bpm
+  SpO2                  : 92.0 %
+  Body Temperature      : 36.5 °C
+  Environ Temp          : 6.0 °C
+  Humidity              : 32.0 %
+  Altitude              : 3200.0 m
+  Pressure              : 695.0 hPa
+  Accel X               : 0.1 g
+  Accel Y               : 0.3 g
+  Accel Z               : 0.9 g
+  Accel Magnitude       : 1.0 g
+  Altitude Δ            : 600.0 m
+  Pressure Δ            : -50.0 hPa
+
+────────────────────────────────────────────────────────────────
+DATA VALIDATION
+────────────────────────────────────────────────────────────────
+  Status  : ✓ VALID
+  All fields within plausible ranges.
+
+────────────────────────────────────────────────────────────────
+RULE ENGINE  (Deterministic — LLM not involved)
+────────────────────────────────────────────────────────────────
+  Triggered Rules:
+
+  [SPO2_MONITOR_001]
+    SpO2 Monitor Band
+    SpO2 92.0% is in the monitor band [92.0–93.0%).
+    Score contribution: +12
+
+  [ALTITUDE_SPO2_001]
+    SpO2 Decrease at Altitude
+    Altitude 3200.0 m (≥2000 m) with SpO2 92.0% below normal 95.0%.
+    Score contribution: +15
+
+  [ALTITUDE_RAPID_001]
+    Rapid Altitude Change
+    Altitude changed by 600.0 m in one reading interval.
+    Score contribution: +8
+
+  Risk Score  : 62/100
+  Risk Level  : HIGH
+  Persistence : 4 consecutive abnormal readings
+
+────────────────────────────────────────────────────────────────
+DECISION
+────────────────────────────────────────────────────────────────
+  ⚠ Risk event detected — risk level: HIGH
+  → Triggering AI analysis pipeline...
+
+  ⛰ Altitude context: User is at altitude 3200.0 m — SpO2 values should be interpreted in altitude context.
+
+────────────────────────────────────────────────────────────────
+AI AGENT 1 — CAUSE ANALYSIS
+────────────────────────────────────────────────────────────────
+  Interpretation:
+  The user's SpO2 reading of 92.0% at an altitude of 3200.0 m may be consistent with hypoxemia or low oxygen levels due to the higher altitude, which could affect SpO2 readings.
+
+  Possible causes:
+
+  1. Hypoxemia
+     Confidence: 0.75
+     Supporting:
+       + SpO2 value of 92.0% at high altitude
+     Contradicting:
+       - User's baseline SpO2 is 98.0%
+       - No other symptoms reported
+
+  2. Altitude-related artifact
+     Confidence: 0.65
+     Supporting:
+       + SpO2 value at high altitude
+       + User's baseline SpO2 is 98.0%
+     Contradicting:
+       - No other symptoms reported
+       - Sensor readings are within normal range for the given context
+
+  Alternative explanations:
+    • Environmental factors such as cabin pressure in an enclosed space or sensor artifact due to altitude changes
+
+  Missing information:
+    ? User's baseline SpO2 at high altitudes
+    ? Other symptoms like shortness of breath, dizziness
+
+────────────────────────────────────────────────────────────────
+CAUSE VALIDATION  (Deterministic)
+────────────────────────────────────────────────────────────────
+
+  Cause  : Hypoxemia
+  Status : INSUFFICIENT_DATA
+  Evidence:
+    ✓ SpO2 value of 92.0% at high altitude
+  Contradictions:
+    ✗ User's baseline SpO2 is 98.0%
+    ✗ No other symptoms reported
+  → Rejected — not passed to Agent 2
+
+  Cause  : Altitude-related artifact
+  Status : SUPPORTED
+  Evidence:
+    ✓ Significant altitude 3200.0 m (≥2500 m)
+    ✓ SpO2 92.0% below normal — consistent with altitude effect
+    ✓ Rapid altitude gain of 600.0 m noted
+    ✓ SpO2 value at high altitude
+  Contradictions:
+    ✗ No other symptoms reported
+    ✗ Sensor readings are within normal range for the given context
+  → Passed to Agent 2
+
+  1 cause(s) passed validation and will be sent to Agent 2. 1 cause(s) rejected due to insufficient sensor evidence.
+
+────────────────────────────────────────────────────────────────
+AI AGENT 2 — PRECAUTION RECOMMENDATIONS
+────────────────────────────────────────────────────────────────
+
+  Condition Summary:
+  The user is at an elevated altitude (3200.0 m) which may affect SpO2 levels, resulting in a score of 92.0%.
+
+  Immediate Precautions:
+    1. Consider increasing fluid intake to maintain hydration and monitor for any changes in symptoms.
+
+  Monitoring Steps:
+    1. Monitor SpO2 levels regularly at home and report any significant drops or changes to medical professionals.
+
+  Seek Medical Attention If:
+    1. Persistent or worsening hypoxemia, shortness of breath, dizziness, or other concerning symptoms
+
+  Reasoning: At high altitude, SpO2 values can be affected due to lower atmospheric pressure. Monitoring and hydration are recommended.
+
+────────────────────────────────────────────────────────────────
+FINAL SYSTEM RESULT
+────────────────────────────────────────────────────────────────
+  Risk Level : HIGH
+  Cause      : Altitude-related artifact
+  Validation : SUPPORTED
+  Action     : Consider increasing fluid intake to maintain hydration and monitor for any changes in symptoms.
+
+  Processing time: 38.03s
+
+════════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════════
+  SYSTEM COMPLETE
+────────────────────────────────────────────────────────────────
+  Scenarios executed : 8
+  Normal scenarios   : 2
+  Risk scenarios     : 6
+  AI analyses run    : 6
+════════════════════════════════════════════════════════════════
+
