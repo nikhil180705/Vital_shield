@@ -1,0 +1,7 @@
+.env
+./tests
+./__pycache__
+./health_risk_system.log
+./main_output.txt
+./main_output_utf8.txt
+./output.txt
